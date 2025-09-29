@@ -1,22 +1,18 @@
 name: Deploy to GitHub Pages
 
 on:
-  workflow_dispatch:    # allows manual trigger
+  workflow_dispatch:  # manual trigger
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Build site
-        run: |
-          # put your build steps here
-          echo "Building site..."
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{secrets.GH_PERSONAL_TOKEN}}
-          publish_dir: .   # directory with your built site
+          github_token: ${{ secrets.GH_PERSONAL_TOKEN }}
+          publish_dir: .        # your built site folder (adjust if needed)
+          publish_branch: gh-pages
