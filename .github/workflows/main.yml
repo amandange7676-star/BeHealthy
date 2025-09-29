@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:    # allows manual trigger
+  push:
+    branches:
+      - main            # optional: still trigger on pushes if you want
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build site
+        run: |
+          # put your build steps here
+          echo "Building site..."
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .   # directory with your built site
